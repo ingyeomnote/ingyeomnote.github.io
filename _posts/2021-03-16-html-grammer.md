@@ -79,9 +79,9 @@ HTML 문서를, 정해진 모양으로 응답(response) 한다.
 
 
 
-- **DTD**(**D**ocument **T**ype **D**efinition) 해석
+- **DTD**(**D**ocument **T**ype **D**efinition) 해석!
 
-  <img src="C:\Users\1\ingyeomnote.github.io\assets\images\bio-photo-grammer-dto.png" alt="bio-photo-grammer-dto" style="zoom: 50%;" align="left" />
+  ![bio-photo-grammer-dto](C:\Users\1\ingyeomnote.github.io\assets\images\bio-photo-grammer-dto.png)
 
   
 
