@@ -67,19 +67,21 @@ HTML 문서를, 정해진 모양으로 응답(response) 한다.
 </html>
 ```
 
-- **문서를 정의 하는(`<head>`) 기본 태그**
+
+
+**문서를 정의 하는(`<head>`) 기본 태그**
+
 - `<meta>` : 문서의 기본 정보 등을 정의
-  - `<title>` : 문서의 제목을 정의
+- `<title>` : 문서의 제목을 정의
 - `<script>` : javascript 등을 정의
-  - <`style`> : css 등을 정의
+- <`style`> : css 등을 정의
 - <`link`> : 외부 문서를 연결할 때 정의
-  
 
 
 
 - **DTD**(**D**ocument **T**ype **D**efinition) 해석
 
-  <img src="C:\Users\1\AppData\Roaming\Typora\typora-user-images\image-20210302235542109.png" alt="image-20210302235542109" style="zoom:55%;" align="left" />
+  <img src="C:\Users\1\ingyeomnote.github.io\assets\images\bio-photo-grammer-dto.png" alt="bio-photo-grammer-dto" style="zoom: 50%;" align="left" />
 
   
 
