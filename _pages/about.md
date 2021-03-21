@@ -4,8 +4,8 @@ permalink: /about/
 layout: single
 ---
 
-## devinlfe.github.io 블로그
+## ingyeomnot.github.io 블로그
 
-이 블로그는 Github Pages 블로그 서비스인 github.io를 같이 만들어보는 샘플 블로그이다.
+이 블로그는 1월 12일부터 8월 2일까지 교육 학원에서 배우는 것과 따로 제가 공부하는 것을 정리하는 블로그입니다.
 
 
