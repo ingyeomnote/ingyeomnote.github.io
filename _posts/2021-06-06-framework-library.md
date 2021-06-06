@@ -2,6 +2,9 @@
 title:  "Framework와 Library"
 excerpt: "Framework와 Library의 특징과 차이점에 대해 정리했다."
 
+toc: true
+toc_sticky: true
+
 categories:
   - Spring
 tags:
