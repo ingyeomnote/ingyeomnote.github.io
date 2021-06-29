@@ -9,7 +9,7 @@ categories:
   - Spring
 tags:
   - Spring
-last_modified_at: 2021-06-21T23:12:00
+last_modified_at: 2021-06-26T23:12:00
 ---
 
 
@@ -21,11 +21,18 @@ last_modified_at: 2021-06-21T23:12:00
 짧게나마 다시 Spring Framework란 무엇인가?부터 살펴보면 다음과 같다.
 
 - 자바 엔터프라이즈 개발을 편하게 해주는 오픈소스 경량급 애플리케이션 프레임워크
+
 - EJB(Enterprise Java Beans)의 단점을 보완한 프레임워크
+
 - 경량 컨테이너로 자바 객체를 직접 관리(각각의 객체 생성, 소멸과 같은 라이프 사이클을 관리하며 스프링으로부터 필요한 객체를 얻어올 수 있다.)
+
 - DI(Dependency Injection, 의존성주입)과 AOP(Aspect-Oriented Programming, 관점 지향프로그래밍)이 지원되는 경량 컨테이너 & 프레임워크
 
-    [https://t1.daumcdn.net/cfile/tistory/2549104458AFAB4023](https://t1.daumcdn.net/cfile/tistory/2549104458AFAB4023)
+    
+    
+    ![](https://t1.daumcdn.net/cfile/tistory/2549104458AFAB4023)
+
+
 
 ## Spring Framework의 특징
 
