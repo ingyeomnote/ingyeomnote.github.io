@@ -15,19 +15,19 @@ last_modified_at: 2021-08-22T21:25:00
 
 ---
 
-
-
-
-
 JavaScript는 객체지향언어이다. 하지만 JavaScript에는 클래스라는 개념이 없고 대신 Prototype이라는 것이 존재한다. 이것이 JavaScript가 Prototype 기반 언어라고 불리는 이유이다.
 
 저번 포스팅에서도 프로토타입에 대해 올렸지만 쉽게 이해가 가지 않았기 때문에 다른 분들이 올린 글을 보며 공부를 하다 잘 정리되어 있는 글을 발견해서 같이 보면 좋을 거 같아 다시 한 번 작성합니다.
 
 ---
 
+
+
 # JavaScript
 
  JavaScript는 객체지향언어이다. 하지만 JavaScript에는 클래스라는 개념이 없고 대신 Prototype이라는 것이 존재한다. 이것이 JavaScript가 Prototype 기반 언어라고 불리는 이유이다.
+
+
 
 ### Prototype이 언제 쓰일까?
 
@@ -51,6 +51,8 @@ console.log(park.nose); // 1
 
 kim과 park은 eyes와 nose를 공통적으로 가지고 있는데, 메모리에는 eyes와 nose가 두 개씩 총 4개가 할당된다. 객체를 100개 만들면 200개의 변수가 메모리에 할당되는데 바로 이런 문제를 프로토타입으로 해결할 수 있다.
 
+
+
 ```js
 function Person(){}
 
@@ -66,6 +68,8 @@ console.log(kim.eyes); // 2
 위 소스를 간단히 설명하면 Person.prototype이라는 빈 Object가 어딘가에 존재하고, Person함수로부터 생성된 객체 (kim, park)들은 어딘가에 존재하는 Object에 들어있는 값을 모두 갖다 쓸 수 있다.
 
 즉, eyes와 nose를 어딘가에 있는 빈 공간에 넣어놓고 kim과 park이 공유해서 사용하는 것이다.
+
+
 
 ### Prototype Link와 Prototype Object
 
@@ -95,17 +99,19 @@ var obj = new Object();
 
 위 코드에서 Object가 JavaScript에서 기본적으로 제공하는 함수이다.
 
-![그림1](https://miro.medium.com/max/289/1*AJIDIoBFrGtUb8Nv-IonQg.png)
+<p align="center"><img src="https://miro.medium.com/max/289/1*AJIDIoBFrGtUb8Nv-IonQg.png"></p>
 
 Object와 마찬가지로 Function, Array도 모두 함수로 정의되어 있다. 이것이 첫 번째 포인트이다.
 
 그렇다면 이것에 Prototype Object랑 무슨 상관이 있느냐? **함수가 정의될 때는 2가지 일이 동시에 이루어진다.**
 
+
+
 **1. 해당 함수에 Constructor(생성자) 자격 부여**
 
 Constructor 자격이 부여되면 new를 통해 객체를 만들어 낼 수 있게 된다. 이것이 함수만 new 키워드를 사용할 수 있는 이유이다.
 
-<img src="https://miro.medium.com/max/386/1*rADwBTPKeORv_Qf-lhbFRA.png" alt="그림2" align="center"  />
+<p align="center"><img src="https://miro.medium.com/max/386/1*rADwBTPKeORv_Qf-lhbFRA.png"></p>
 
 
 
@@ -113,12 +119,11 @@ Constructor 자격이 부여되면 new를 통해 객체를 만들어 낼 수 있
 
 함수를 정의하면 함수만 생성되는 것이 아니라 Prototype Object도 같이 생성된다.
 
-<img src="https://miro.medium.com/max/700/1*PZe_YnLftVZwT1dNs1Iu0A.png" alt="그림3" align="center" />
+ <p align="center"><img src="https://miro.medium.com/max/700/1*PZe_YnLftVZwT1dNs1Iu0A.png" ></p>
 
 그리고 생성된 prototype이라는 속성을 통해 Person Object에 접근할 수 있다. Prototype Object는 일반적인 객체와 같으며 기본적인 속성으로 **constructor**와 **\__proto__**를 가지고 있다.
 
-![그림4](https://miro.medium.com/max/307/1*NpSb7ha6lMdZpc8hFvBl2g.png)
-
+ <p align="center"><img src="https://miro.medium.com/max/307/1*NpSb7ha6lMdZpc8hFvBl2g.png" ></p>
 **constructor**는 **Prototype Object**와 같이 생성되었던 함수를 가리키고 있다.
 
 **\__proto__**는 **Prototype Link**이다. 밑에서 자세히 설명
@@ -148,7 +153,7 @@ console.log(kim.eyes); // 2
 
 **Prototype Link**
 
-![그림6](https://miro.medium.com/max/226/1*TPkfy4eqiHHpWDvEOjfQCg.png)
+ <p align="center"><img src="https://miro.medium.com/max/226/1*TPkfy4eqiHHpWDvEOjfQCg.png" ></p>
 
 kim에는 eyes라는 속성이 없는데도 kim.eyes를 실행하면 2라는 값을 참조하는 것을 볼 수 있다. 위에서 설명했듯이 **Prototype Object**에 존재하는 eyes 속성을 참조한 것인데, 이게 어떻게 가능한 걸까?
 
@@ -158,23 +163,21 @@ kim에는 eyes라는 속성이 없는데도 kim.eyes를 실행하면 2라는 값
 
 **\__proto__는 객체가 생성될 때 조상이었던 함수의 Prototype Object를 가리킨다.** kim 객체는 Person함수로부터 생성되었으니 Person 함수의 Prototype Object를 가리키고 있는 것이다.
 
-![그림7](https://miro.medium.com/max/270/1*4V9q1tS5GWLU4sMkhOVNEg.png)
+ <p align="center"><img src="https://miro.medium.com/max/270/1*4V9q1tS5GWLU4sMkhOVNEg.png" ></p>
 
 \__proto__를 까보니 역시 Person 함수의 Prototype Object를 가리키고 있었다.
 
-![그림8](https://miro.medium.com/max/700/1*jMTxqTYDZGhykJQoimmb0A.png)
+<p align="center"><img src="https://miro.medium.com/max/700/1*jMTxqTYDZGhykJQoimmb0A.png" ></p>
 
 
 
-kim객체가 eyes를 직접 가지고 있지 않기 때문에 eyes 속성을 찾을 때까지 상위 프로토타입을 탐색한다. 최상위인 Object의 Prototype Object 까지 도달했는데도 못찾을 경우 undefined를 리턴한다. 이렇게 \__proto__ 속성을 통해 상위 프로토타입과 연결되어 있는 형태를 프로토타입 체인(Chain)이라고 한다.
+**kim**객체가 **eyes**를 직접 가지고 있지 않기 때문에 **eyes** 속성을 찾을 때까지 상위 프로토타입을 탐색한다. 최상위인 **Object**의 **Prototype Object** 까지 도달했는데도 못찾을 경우 **undefined**를 리턴한다. 이렇게 **\__proto__** 속성을 통해 상위 프로토타입과 연결되어 있는 형태를 **프로토타입 체인(Chain)**이라고 한다.
 
-![그림8](https://miro.medium.com/max/700/1*mwPfPuTeiQiGoPmcAXB-Kg.png)
+<p align="center"><img src="https://miro.medium.com/max/700/1*mwPfPuTeiQiGoPmcAXB-Kg.png" ></p>
 
-위의 그림이 프로토타입 체인을 나타낸 것이며 최상위 객체는 Object이다. 이런 프로토타입 체인 구조 때문에 모든 객체는 Object의 자식이라고 불리고, Object Prototype Object에 있는 모든 속성을 사용 할 수 있다. 한 가지 예를 들면 toString 함수가 있다.
+위의 그림이 프로토타입 체인을 나타낸 것이며 최상위 객체는 **Object**이다. 이런 프로토타입 체인 구조 때문에 모든 객체는 **Object의 자식**이라고 불리고, **Object Prototype Object**에 있는 모든 속성을 사용 할 수 있다. 한 가지 예를 들면 **toString** 함수가 있다.
 
-![그림9](https://miro.medium.com/max/395/1*VW4PFea8x7LQiHp3PI8Hrg.png)
-
-
+<p align="center"><img src="https://miro.medium.com/max/395/1*VW4PFea8x7LQiHp3PI8Hrg.png" ></p>
 
 
 
