@@ -1,6 +1,6 @@
 ---
-title: JavaScript - prototype
-excerpt: JavaScript : 프로토타입(prototype)의 이해
+title: "JavaScript - prototype"
+excerpt: "JavaScript : 프로토타입(prototype)의 이해"
 
 toc: true
 toc_sticky: true
