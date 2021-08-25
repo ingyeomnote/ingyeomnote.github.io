@@ -7,7 +7,7 @@ toc_sticky: true
 
 categories:
   - JavaScript	
-tags 
+tags: 
   - JavaScript
   - Prototype
 

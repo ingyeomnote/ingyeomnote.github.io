@@ -1,13 +1,13 @@
 ---
-title: JavaScript - prototype 2
-excerpt: JavaScript : 프로토타입(prototype)의 이해 2
+title: "JavaScript - prototype 2"
+excerpt: "JavaScript : 프로토타입(prototype)의 이해 2"
 
 toc: true
 toc_sticky: true
 
 categories:
   - JavaScript	
-tags 
+tags: 
   - JavaScript
   - Prototype
 
