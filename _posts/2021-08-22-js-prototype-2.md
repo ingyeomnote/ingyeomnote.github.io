@@ -75,7 +75,7 @@ console.log(kim.eyes); // 2
 
 JavaScript에는 **Prototype Link**와 **Prototype Object**라는 것이 존재한다. 그리고 이 둘을 통틀어 **Prototype**이라 부른다.
 
-**Prototype Object**
+#### **Prototype Object**
 
 객체는 언제나 함수(Function)로 생성된다.
 
@@ -151,7 +151,7 @@ console.log(kim.eyes); // 2
 
 
 
-**Prototype Link**
+#### **Prototype Link**
 
  <p align="center"><img src="https://miro.medium.com/max/226/1*TPkfy4eqiHHpWDvEOjfQCg.png" ></p>
 
