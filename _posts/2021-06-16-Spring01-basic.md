@@ -28,7 +28,7 @@ last_modified_at: 2021-06-16T23:32:00
 
 엔터프라이즈급 개발이란 뜻대로만 풀이하면 기업을 대상으로 하는 개발이라는 말이다. 즉, 대규모 데이터 처리와 트랜잭션이 동시에 여러 사용자로 부터 행해지는 매우 큰 규모의 환경을 엔터프라이즈 환경을 뜻한다.
 
-Spring Framework는 **경량 컨테이너**로 자바 객체를 담고 직접 관리한다. 객체의 생성 및 소멸 그리고 라이프 사이클을 관리하며 언제든 **[Spring 컨테이너](https://www.notion.so/Spring-Container-b3aa5e2a724e46998e7f1bd471daf748)로부터 필요한 객체**를 가져와 사용할 수 있다. 
+Spring Framework는 **경량 컨테이너**로 자바 객체를 담고 직접 관리한다. 객체의 생성 및 소멸 그리고 라이프 사이클을 관리하며 언제든 **[Spring 컨테이너](https://ingyeomnote.github.io/spring/Spring03-container/)로부터 필요한 객체**를 가져와 사용할 수 있다. 
 
 이는 Spring이 IoC 기반의 Framework임을 의미한다.
 

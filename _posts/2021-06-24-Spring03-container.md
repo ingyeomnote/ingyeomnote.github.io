@@ -29,7 +29,7 @@ Bean Factory는 스프링 설정 파일에 등록된 Bean 객체를 생성하고
 
 #### Application Context
 
-Bean Factory와 마찬가지로, Bean 객체를 생성하고 관리하는 기능을 가지고 있다. 뿐만 아니라 **트랜잭션 관리, 메시지 기반의 다국어 처리, AOP처리 **등 DI(Dependency Injection)과 Ioc(Inversion of Control)외에도 많은 부분을 지원하고 있다. 
+Bean Factory와 마찬가지로, Bean 객체를 생성하고 관리하는 기능을 가지고 있다. 뿐만 아니라 **트랜잭션 관리, 메시지 기반의 다국어 처리, AOP처리**등 DI(Dependency Injection)과 Ioc(Inversion of Control)외에도 많은 부분을 지원하고 있다. 
 
 Bean Factory와의 큰 차이점은 Application Context는 **컨테이너가 구동되는 시점에 객체들을 생성하는 Pre-Loading 방식과 트랜잭션 관리**가 가능하다는 점이다.
 
