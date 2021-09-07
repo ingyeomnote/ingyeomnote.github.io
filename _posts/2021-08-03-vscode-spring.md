@@ -116,18 +116,23 @@ https://start.spring.io/으로 이동하여 하단의 [Switch to the full versio
 
 **ctrl + shift + p**를 입력한 후 입력창에 **Spring Initializr : Crate a Maven Project**를 선택
 
-version은 **2.4.10** 선택, project language는 **Java** Group Id 및 Artifact Id 설정 Packaging type은 **Jar**, Java version은 설치되어 있는 **Jdk 버전** 선택 후 생성하려는 폴더를 클릭해주면 생성이 완료된다.
+version은 **2.4.10** 선택, project language는 **Java** Group Id 및 Artifact Id 설정 Packaging type은 **War**, Java version은 설치되어 있는 **Jdk 버전** 선택 후 생성하려는 폴더를 클릭해주면 생성이 완료된다.
 
+ 
 
+**pom.xml**
 
-**porm.xml**
-
-porm.xml에서 <dependencies>태그 내에 아래의 코드를 추가한다.
+pom.xml에서 <dependencies>태그 내에 아래의 코드를 추가한다.
 
 ```xml
 <dependency> 
     <groupId>org.apache.tomcat.embed</groupId> 
     <artifactId>tomcat-embed-jasper</artifactId> 
+</dependency>
+
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
 </dependency>
 ```
 
@@ -137,8 +142,49 @@ application.properties 내에 아래의 코드를 추가한다.
 
 ```xml
 server.port = 9090
+spring.mvc.view.prefix = /WEB-INF/jsp/
+spring.mvc.view.suffix = .jsp
 ```
 
-**view(jsp)추가**
+**View(jsp)추가**
 
-\src\main내에 \WEB-INF\jsp를 추가한다.
+\src\main내에 webapp\WEB-INF\jsp를 추가한 후, jsp 폴더 아래에 index.jsp를 만든다.
+
+```jsp
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Hi, Spring
+    </h1>
+</body>
+</html>
+```
+
+**Controller 추가**
+
+생성한 Group Location에 Controller를 추가한다. 나는 IndexController.java 만든 후 아래의 코드를 작성했다.
+
+```java
+package com.example.test.exam;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class IndexController {
+    @RequestMapping(value = "/")
+    public String helloWolrd(){
+        return "index";
+    }
+}
+```
+
+이후 F5를 눌러 실행을 하게 되면, 리턴된 값 index의 **앞에 /WEB-INF/jsp/**, **뒤에 .jsp**가 붙어 **/WEB-INF/jsp/index.jsp**를 찾는다. 그러면 src/main/webapp/WEB-INF/jsp/index.jsp가 호출된다.
+
