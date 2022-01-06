@@ -2,8 +2,8 @@
 title:  "HTML - 문법"
 excerpt: "HTML 기초"
 
-toc:true
-toc_stickle:true
+toc: true
+toc_sticky: true
 
 categories:
   - HTML
