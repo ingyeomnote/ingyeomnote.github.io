@@ -20,7 +20,7 @@ title                    : "개발공부Blog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "개발공부Blog"
-description              : "풀스택 개발자가 되고싶은 학생"
+description              : "열심히 하자"
 url                      : "https://ingyeomnote.github.io"
 baseurl                  : # 서브 경로가 있는 경우 기재
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -94,9 +94,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "김인겸"
+  name             : "InKyeom"
   avatar           : "/assets/images/bio-photo-teri.jpg"
-  bio              : "풀스택 개발자가 되고싶은 학생"
+  bio              : "열심히 하자"
   location         : "South Korea"
   email            :
   links:
