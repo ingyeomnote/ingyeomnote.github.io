@@ -1,6 +1,6 @@
 ---
 title:  "Scanner와 BufferedReader의 차이"
-excerpt: "백준 1000번 문제를 풀다가 공부하게 된 Scanner와 BufferedReader"
+excerpt: "백준 1000번 문제를 풀다가 공부하게 된 Scanner와 BufferedReader의 차이"
 
 categories:
   - Java
@@ -11,7 +11,7 @@ tags:
 last_modified_at: 2022-03-14T23:34:00
 ---
 
-# Scanner와 BufferedReader의 차이
+
 
 이번 글은 백준 1000번 알고리즘 문제를 풀면서 알게된 Scanner와 BufferedReader의 차이점에 대해 알아보겠다.
 
