@@ -1,4 +1,4 @@
-```
+---
 title:  "[SpringBoot] Java 빌드 시스템 - IntelliJ"
 excerpt: "자바의 빌드 시스템에 대해 알아보자"
 
@@ -12,8 +12,9 @@ tags:
   - SpringBoot
   - IntelliJ
 last_modified_at: 2022-09-01T21:34:00
+---
 
-```
+
 
 
 
