@@ -1,12 +1,12 @@
 ---
-title:  "[SpringBoot] Java 빌드 시스템 - IntelliJ"
+title:  "[이동준] Java 빌드 시스템 - IntelliJ"
 excerpt: "자바의 빌드 시스템에 대해 알아보자"
 
 toc: true
 toc_sticky: true
 
 categories:
-  - SpringBoot
+- 스프링 부트와 AWS로 혼자 구현하는 웹 서비스
 
 tags:
   - Java

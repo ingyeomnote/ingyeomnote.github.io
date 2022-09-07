@@ -1,12 +1,12 @@
 ---
-title:  "[SpringBoot] IntelliJ와 Github 연동하기"
+title:  "[이동준] IntelliJ와 Github 연동하기"
 excerpt: "IntelliJ에서 Github를 연동하는 방법에 대해서"
 
 toc: true
 toc_sticky: true
 
 categories:
-  - SpringBoot
+- 스프링 부트와 AWS로 혼자 구현하는 웹 서비스
 
 tags:
   - Java

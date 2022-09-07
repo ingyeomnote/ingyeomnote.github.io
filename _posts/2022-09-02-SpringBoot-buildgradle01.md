@@ -1,12 +1,12 @@
 ---
-title:  "[SpringBoot] build.gradle[1/2]"
+title:  "[이동준] build.gradle[1/2]"
 excerpt: "build.gradle에 대해 알아보자"
 
 toc: true
 toc_sticky: true
 
 categories:
-  - SpringBoot
+- 스프링 부트와 AWS로 혼자 구현하는 웹 서비스
 
 tags:
   - Java
