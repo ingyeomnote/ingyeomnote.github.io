@@ -1,4 +1,19 @@
-# JS : Java Script
+---
+title: "JavaScript"
+excerpt: "JavaScript"
+
+toc: true
+toc_sticky: true
+
+categories:
+- JavaScript
+
+tags:
+- JavaScript
+
+last_modified_at: 2021-08-23T12:15:00
+
+---
 
 JavaScript는 기본적으로, 웹 페이지를 만들 때 사용한다.
 
