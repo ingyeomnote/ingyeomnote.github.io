@@ -435,14 +435,14 @@ GitHub Actions를 사용한 자동 배포는:
 
 ---
 
-**이전 글:** [1-2] Hugo 블로그 구조와 설정
+**이전 글:** [[1-2] Hugo 블로그 구조와 설정](/posts/2025-11-04-hugo-github-pages-2-structure/)
 
-**다음 글:** [2] Giscus로 블로그에 댓글 기능 추가하기
+**다음 글:** [[2] Giscus로 블로그에 댓글 기능 추가하기](/posts/2025-11-04-giscus-comments/)
 
 **시리즈 전체 보기:**
-- [1-1] Hugo와 GitHub Pages란?
-- [1-2] Hugo 블로그 구조와 설정
-- [1-3] GitHub Pages에 배포하기 ← 현재 글
-- [2] Giscus 댓글 기능 추가
-- [3-1] Netlify와 CMS 이해
-- [3-2] Netlify CMS 설정
+- [[1-1] Hugo와 GitHub Pages란?](/posts/2025-11-04-hugo-github-pages-1-intro/)
+- [[1-2] Hugo 블로그 구조와 설정](/posts/2025-11-04-hugo-github-pages-2-structure/)
+- **[1-3] GitHub Pages에 배포하기** ← 현재 글
+- [[2] Giscus 댓글 기능 추가](/posts/2025-11-04-giscus-comments/)
+- [[3-1] Netlify와 CMS 이해](/posts/2025-11-04-netlify-cms-1-intro/)
+- [[3-2] Netlify CMS 설정](/posts/2025-11-04-netlify-cms-2-setup/)

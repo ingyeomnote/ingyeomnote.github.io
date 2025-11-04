@@ -220,12 +220,12 @@ Hugo와 GitHub Pages는 개발자 친화적인 블로그 솔루션입니다.
 
 ---
 
-**다음 글:** [1-2] Hugo 블로그 구조와 설정 파헤치기
+**다음 글:** [[1-2] Hugo 블로그 구조와 설정 파헤치기](/posts/2025-11-04-hugo-github-pages-2-structure/)
 
 **시리즈 전체 보기:**
-- [1-1] Hugo와 GitHub Pages란? ← 현재 글
-- [1-2] Hugo 블로그 구조와 설정
-- [1-3] GitHub Pages에 배포하기
-- [2] Giscus 댓글 기능 추가
-- [3-1] Netlify와 CMS 이해
-- [3-2] Netlify CMS 설정
+- **[1-1] Hugo와 GitHub Pages란?** ← 현재 글
+- [[1-2] Hugo 블로그 구조와 설정](/posts/2025-11-04-hugo-github-pages-2-structure/)
+- [[1-3] GitHub Pages에 배포하기](/posts/2025-11-04-hugo-github-pages-3-deployment/)
+- [[2] Giscus 댓글 기능 추가](/posts/2025-11-04-giscus-comments/)
+- [[3-1] Netlify와 CMS 이해](/posts/2025-11-04-netlify-cms-1-intro/)
+- [[3-2] Netlify CMS 설정](/posts/2025-11-04-netlify-cms-2-setup/)

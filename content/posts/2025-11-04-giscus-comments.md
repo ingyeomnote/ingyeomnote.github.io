@@ -522,14 +522,14 @@ Giscus는 정말 훌륭한 댓글 솔루션입니다:
 
 ---
 
-**이전 글:** [1-3] GitHub Pages에 배포하기
+**이전 글:** [[1-3] GitHub Pages에 배포하기](/posts/2025-11-04-hugo-github-pages-3-deployment/)
 
-**다음 글:** [3-1] Netlify와 CMS의 이해
+**다음 글:** [[3-1] Netlify와 CMS의 이해](/posts/2025-11-04-netlify-cms-1-intro/)
 
 **시리즈 전체 보기:**
-- [1-1] Hugo와 GitHub Pages란?
-- [1-2] Hugo 블로그 구조와 설정
-- [1-3] GitHub Pages에 배포하기
-- [2] Giscus 댓글 기능 추가 ← 현재 글
-- [3-1] Netlify와 CMS 이해
-- [3-2] Netlify CMS 설정
+- [[1-1] Hugo와 GitHub Pages란?](/posts/2025-11-04-hugo-github-pages-1-intro/)
+- [[1-2] Hugo 블로그 구조와 설정](/posts/2025-11-04-hugo-github-pages-2-structure/)
+- [[1-3] GitHub Pages에 배포하기](/posts/2025-11-04-hugo-github-pages-3-deployment/)
+- **[2] Giscus 댓글 기능 추가** ← 현재 글
+- [[3-1] Netlify와 CMS 이해](/posts/2025-11-04-netlify-cms-1-intro/)
+- [[3-2] Netlify CMS 설정](/posts/2025-11-04-netlify-cms-2-setup/)
