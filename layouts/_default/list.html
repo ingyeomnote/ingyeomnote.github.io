@@ -4,9 +4,22 @@
 {{ .Content }}
 
 {{ if .Pages }}
-<ul class="post-list">
+{{ $listClass := "post-list" }}
+{{ if eq .Type "categories" }}
+    {{ $listClass = "category-list" }}
+{{ else if eq .Type "tags" }}
+    {{ $listClass = "tag-list" }}
+{{ end }}
+
+<ul class="{{ $listClass }}">
     {{ range .Pages.ByPublishDate.Reverse }}
     <li>
+        {{ if or (eq $.Type "categories") (eq $.Type "tags") }}
+        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        <div class="post-meta">
+            <span>{{ len .Pages }} 개의 포스트</span>
+        </div>
+        {{ else }}
         <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         <div class="post-meta">
             <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006년 1월 2일" }}</time>
@@ -19,8 +32,9 @@
         </div>
         {{ if .Description }}
         <p>{{ .Description }}</p>
-        {{ else }}
+        {{ else if .Summary }}
         <p>{{ .Summary }}</p>
+        {{ end }}
         {{ end }}
     </li>
     {{ end }}

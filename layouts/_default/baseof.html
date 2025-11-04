@@ -137,14 +137,13 @@
             box-shadow: var(--shadow-small);
             position: sticky;
             top: 0;
-            z-index: 100;
-            margin-bottom: 2rem;
+            z-index: 1000;
             border-bottom: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
-        header .header-content {
+        header .header-nav {
             max-width: 1200px;
             margin: 0 auto;
             padding: 1.5rem 2rem;
@@ -152,6 +151,12 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+        }
+
+        header .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         header h1 {
@@ -242,16 +247,84 @@
             min-height: 70vh;
         }
 
+        /* Sidebar Layout (Optional) */
+        .content-with-sidebar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .main-content {
+            min-width: 0;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 120px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-small);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .sidebar ul li a:hover {
+            color: var(--accent-color);
+            background: var(--bg-secondary);
+            transform: translateX(4px);
+        }
+
+        .sidebar .widget {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar .widget:last-child {
+            margin-bottom: 0;
+        }
+
         /* Home Page Styles */
         .home-intro {
             background: var(--gradient-primary);
             color: white;
-            padding: 4rem 3rem;
-            border-radius: 16px;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-medium);
+            padding: 4rem 2rem;
+            margin-bottom: 0;
+            box-shadow: none;
             position: relative;
             overflow: hidden;
+            border-radius: 0;
         }
 
         .home-intro::before {
@@ -288,11 +361,11 @@
             align-items: center;
             gap: 2rem;
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-medium);
-            border: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            margin-bottom: 0;
+            box-shadow: none;
+            border: none;
+            border-top: 1px solid var(--border-color);
         }
 
         .profile-avatar {
@@ -362,6 +435,70 @@
             color: white;
             transform: translateY(-2px);
             box-shadow: var(--shadow-medium);
+        }
+
+        /* List Styles */
+        .post-list,
+        .category-list,
+        .tag-list {
+            list-style: none;
+        }
+
+        /* Category and Tag specific styles */
+        .category-list,
+        .tag-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .category-list li,
+        .tag-list li {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-small);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid var(--border-color);
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 150px;
+        }
+
+        .category-list li:hover,
+        .tag-list li:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-color);
+        }
+
+        .category-list h2,
+        .tag-list h2,
+        .category-list h3,
+        .tag-list h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .category-list .post-meta,
+        .tag-list .post-meta {
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .category-list p,
+        .tag-list p {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
         }
 
         /* Post List Styles */
@@ -676,11 +813,15 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            header .header-content {
+            header .header-nav {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
                 padding: 1rem 1.5rem;
+            }
+
+            header .header-content {
+                padding: 0 1.5rem;
             }
 
             nav {
@@ -695,6 +836,16 @@
 
             main {
                 padding: 0 1rem 2rem;
+            }
+
+            .content-with-sidebar {
+                grid-template-columns: 1fr;
+                padding: 0 1rem 2rem;
+            }
+
+            .sidebar {
+                position: static;
+                margin-top: 2rem;
             }
 
             main > h1, main > h2 {
@@ -750,6 +901,18 @@
                 font-size: 1.25rem;
             }
 
+            .category-list,
+            .tag-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .category-list li,
+            .tag-list li {
+                padding: 1.5rem;
+                min-height: 120px;
+            }
+
             .content h1 {
                 font-size: 1.75rem;
             }
@@ -774,7 +937,7 @@
 </head>
 <body>
     <header>
-        <div class="header-content">
+        <div class="header-nav">
             <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
             <nav>
                 {{ range .Site.Menus.main }}
@@ -785,6 +948,36 @@
                 </button>
             </nav>
         </div>
+        {{ if .IsHome }}
+        <div class="header-content">
+            <div class="home-intro">
+                <h2>{{ .Site.Params.homeInfoParams.Title }}</h2>
+                <p>{{ .Site.Params.homeInfoParams.Content }}</p>
+            </div>
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    {{ if .Site.Params.profileImage }}
+                    <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.author }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    {{ else }}
+                    {{ substr .Site.Params.author 0 1 }}
+                    {{ end }}
+                </div>
+                <div class="profile-info">
+                    <h3>{{ .Site.Params.author }}</h3>
+                    <p>{{ .Site.Params.profileBio | default "개발자이자 기술 블로거입니다. 새로운 기술을 배우고 공유하는 것을 좋아합니다." }}</p>
+                    {{ if .Site.Params.socialLinks }}
+                    <div class="profile-links">
+                        {{ range .Site.Params.socialLinks }}
+                        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+                            {{ .icon }} {{ .name }}
+                        </a>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
     </header>
 
     <main>
