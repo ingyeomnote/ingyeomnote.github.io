@@ -147,12 +147,6 @@
             flex-wrap: wrap;
         }
 
-        header .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
         header h1 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -307,128 +301,6 @@
 
         .sidebar .widget:last-child {
             margin-bottom: 0;
-        }
-
-        /* Home Page Styles */
-        .home-intro {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 4rem 2rem;
-            margin-bottom: 0;
-            box-shadow: none;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0;
-        }
-
-        .home-intro::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        .home-intro h2 {
-            margin: 0 0 1rem 0;
-            font-size: 2.5rem;
-            font-weight: 800;
-            position: relative;
-            z-index: 1;
-        }
-
-        .home-intro p {
-            margin: 0;
-            font-size: 1.2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-            line-height: 1.8;
-        }
-
-        /* Profile Section */
-        .profile-section {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            background: var(--card-bg);
-            padding: 2.5rem 2rem;
-            margin-bottom: 0;
-            box-shadow: none;
-            border: none;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            font-weight: 700;
-            box-shadow: var(--shadow-hover);
-            flex-shrink: 0;
-            position: relative;
-        }
-
-        .profile-avatar::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
-            z-index: -1;
-            opacity: 0.3;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .profile-info h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .profile-info p {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
-        .profile-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .profile-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .profile-links a:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
         }
 
         /* List Styles */
@@ -814,10 +686,6 @@
                 padding: 1rem 1.5rem;
             }
 
-            header .header-content {
-                padding: 0 1.5rem;
-            }
-
             nav {
                 gap: 0.75rem;
                 flex-wrap: wrap;
@@ -852,34 +720,6 @@
 
             article header h1 {
                 font-size: 2rem;
-            }
-
-            .home-intro {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .home-intro h2 {
-                font-size: 1.75rem;
-            }
-
-            .home-intro p {
-                font-size: 1rem;
-            }
-
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem 1.5rem;
-            }
-
-            .profile-avatar {
-                width: 100px;
-                height: 100px;
-                font-size: 2.5rem;
-            }
-
-            .profile-links {
-                justify-content: center;
             }
 
             .post-list li {
@@ -942,36 +782,6 @@
                 </button>
             </nav>
         </div>
-        {{ if .IsHome }}
-        <div class="header-content">
-            <div class="home-intro">
-                <h2>{{ .Site.Params.homeInfoParams.Title }}</h2>
-                <p>{{ .Site.Params.homeInfoParams.Content }}</p>
-            </div>
-            <div class="profile-section">
-                <div class="profile-avatar">
-                    {{ if .Site.Params.profileImage }}
-                    <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.author }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                    {{ else }}
-                    {{ substr .Site.Params.author 0 1 }}
-                    {{ end }}
-                </div>
-                <div class="profile-info">
-                    <h3>{{ .Site.Params.author }}</h3>
-                    <p>{{ .Site.Params.profileBio | default "개발자이자 기술 블로거입니다. 새로운 기술을 배우고 공유하는 것을 좋아합니다." }}</p>
-                    {{ if .Site.Params.socialLinks }}
-                    <div class="profile-links">
-                        {{ range .Site.Params.socialLinks }}
-                        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
-                            {{ .icon }} {{ .name }}
-                        </a>
-                        {{ end }}
-                    </div>
-                    {{ end }}
-                </div>
-            </div>
-        </div>
-        {{ end }}
     </header>
 
     <main>
