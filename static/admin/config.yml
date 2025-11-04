@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: ingyeomnote/ingyeomnote.github.io
+  branch: master
+  # OAuth 게이트웨이 (Netlify의 무료 서비스 사용)
+  # 사용자가 GitHub OAuth App을 설정해야 합니다
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+locale: 'ko'
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    label_singular: "Post"
+    folder: "content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "제목", name: "title", widget: "string"}
+      - {label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "YYYY-MM-DD", time_format: "HH:mm"}
+      - {label: "설명", name: "description", widget: "string", required: false}
+      - {label: "카테고리", name: "categories", widget: "list", required: false}
+      - {label: "태그", name: "tags", widget: "list", required: false}
+      - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "내용", name: "body", widget: "markdown"}
+
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - {label: "제목", name: "title", widget: "string"}
+          - {label: "내용", name: "body", widget: "markdown"}
