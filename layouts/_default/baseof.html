@@ -354,6 +354,8 @@
             }
         }
     </style>
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <header>
@@ -374,5 +376,18 @@
     <footer>
         <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
     </footer>
+
+    <!-- Netlify Identity Redirect Script -->
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/cms/";
+            });
+          }
+        });
+      }
+    </script>
 </body>
 </html>
