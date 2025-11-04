@@ -5,6 +5,8 @@ title = "Ingyeom's Tech Blog"
 [params]
   description = "개발, 프로젝트 및 기술 기록을 위한 개인 기술 블로그"
   author = "Ingyeom"
+  profileBio = "풀스택 개발자이자 기술 블로거입니다. 새로운 기술을 배우고 공유하는 것을 좋아합니다."
+  # profileImage = "/images/profile.jpg"  # 프로필 이미지 경로 (업로드 후 주석 해제)
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true
@@ -28,6 +30,17 @@ title = "Ingyeom's Tech Blog"
 [[params.socialIcons]]
   name = "github"
   url = "https://github.com/ingyeomnote"
+
+# Social Links for Profile Section
+[[params.socialLinks]]
+  name = "GitHub"
+  icon = "💻"
+  url = "https://github.com/ingyeomnote"
+
+[[params.socialLinks]]
+  name = "Email"
+  icon = "📧"
+  url = "mailto:ingyeomnote@example.com"
 
 [params.cover]
   hidden = true
