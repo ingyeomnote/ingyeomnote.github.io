@@ -4,6 +4,30 @@
     <p>{{ .Site.Params.homeInfoParams.Content }}</p>
 </div>
 
+<!-- Profile Section -->
+<div class="profile-section">
+    <div class="profile-avatar">
+        {{ if .Site.Params.profileImage }}
+        <img src="{{ .Site.Params.profileImage }}" alt="{{ .Site.Params.author }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        {{ else }}
+        {{ substr .Site.Params.author 0 1 }}
+        {{ end }}
+    </div>
+    <div class="profile-info">
+        <h3>{{ .Site.Params.author }}</h3>
+        <p>{{ .Site.Params.profileBio | default "개발자이자 기술 블로거입니다. 새로운 기술을 배우고 공유하는 것을 좋아합니다." }}</p>
+        {{ if .Site.Params.socialLinks }}
+        <div class="profile-links">
+            {{ range .Site.Params.socialLinks }}
+            <a href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+                {{ .icon }} {{ .name }}
+            </a>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</div>
+
 <h2>최근 포스트</h2>
 <ul class="post-list">
     {{ range first 10 (where .Site.RegularPages "Type" "posts").ByPublishDate.Reverse }}
