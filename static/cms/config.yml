@@ -1,11 +1,6 @@
 backend:
-  name: github
-  repo: ingyeomnote/ingyeomnote.github.io
+  name: git-gateway
   branch: master
-  # OAuth 게이트웨이 (Netlify의 무료 서비스 사용)
-  # 사용자가 GitHub OAuth App을 설정해야 합니다
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
