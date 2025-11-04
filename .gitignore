@@ -1,0 +1,24 @@
+# Hugo default output directory
+/public/
+/resources/
+
+# Hugo cache
+.hugo_build.lock
+
+# Vim
+*~
+*.sw[p_]
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

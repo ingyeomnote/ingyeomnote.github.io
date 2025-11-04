@@ -1,0 +1,29 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+
+{{ .Content }}
+
+{{ if .Pages }}
+<ul class="post-list">
+    {{ range .Pages.ByPublishDate.Reverse }}
+    <li>
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006년 1월 2일" }}</time>
+            {{ if .Params.tags }}
+            | Tags:
+            {{ range .Params.tags }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+            {{ end }}
+        </div>
+        {{ if .Description }}
+        <p>{{ .Description }}</p>
+        {{ else }}
+        <p>{{ .Summary }}</p>
+        {{ end }}
+    </li>
+    {{ end }}
+</ul>
+{{ end }}
+{{ end }}

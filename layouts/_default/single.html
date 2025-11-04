@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article>
+    <header>
+        <h1>{{ .Title }}</h1>
+        <div class="post-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006년 1월 2일" }}</time>
+            {{ if .Params.categories }}
+            | Categories:
+            {{ range .Params.categories }}
+            <a href="{{ "/categories/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+            {{ end }}
+            {{ if .Params.tags }}
+            | Tags:
+            {{ range .Params.tags }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+            {{ end }}
+            {{ end }}
+        </div>
+    </header>
+
+    <div class="content">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}
