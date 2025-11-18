@@ -1,0 +1,271 @@
+{{ define "main" }}
+<div class="search-container">
+  <h1>{{ .Title }}</h1>
+
+  <div class="search-box">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="검색어를 입력하세요..."
+      autocomplete="off"
+      aria-label="Search"
+    />
+    <button id="search-button" aria-label="Search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div id="search-results"></div>
+
+  <div id="no-results" style="display: none;">
+    <p>검색 결과가 없습니다.</p>
+  </div>
+</div>
+
+<style>
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.search-container h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.search-box {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+#search-input {
+  width: 100%;
+  padding: 1rem 3rem 1rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--entry, #fff);
+  color: var(--primary, #000);
+  transition: border-color 0.3s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--tertiary, #4a9eff);
+}
+
+#search-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--primary, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-button:hover {
+  opacity: 0.7;
+}
+
+.search-result-item {
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 8px;
+  background: var(--entry, #fff);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-result-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.search-result-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.search-result-title a {
+  color: var(--primary, #000);
+  text-decoration: none;
+}
+
+.search-result-title a:hover {
+  color: var(--tertiary, #4a9eff);
+}
+
+.search-result-meta {
+  font-size: 0.875rem;
+  color: var(--secondary, #666);
+  margin-bottom: 0.75rem;
+}
+
+.search-result-summary {
+  color: var(--primary, #000);
+  line-height: 1.6;
+}
+
+.search-result-tags {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.search-result-tag {
+  padding: 0.25rem 0.75rem;
+  background: var(--code-bg, #f5f5f5);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--secondary, #666);
+}
+
+#no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--secondary, #666);
+}
+
+#no-results p {
+  font-size: 1.125rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  #search-input {
+    background: var(--entry, #1a1a1a);
+    color: var(--primary, #fff);
+  }
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+<script>
+(function() {
+  const searchInput = document.getElementById('search-input');
+  const searchButton = document.getElementById('search-button');
+  const searchResults = document.getElementById('search-results');
+  const noResults = document.getElementById('no-results');
+
+  let fuse;
+  let searchData = [];
+
+  // Load search index
+  fetch('/index.json')
+    .then(response => response.json())
+    .then(data => {
+      searchData = data;
+      const options = {
+        keys: [
+          { name: 'title', weight: 0.4 },
+          { name: 'content', weight: 0.3 },
+          { name: 'summary', weight: 0.2 },
+          { name: 'tags', weight: 0.05 },
+          { name: 'categories', weight: 0.05 }
+        ],
+        threshold: 0.3,
+        includeScore: true,
+        minMatchCharLength: 2,
+        ignoreLocation: true
+      };
+      fuse = new Fuse(searchData, options);
+    })
+    .catch(err => {
+      console.error('Failed to load search index:', err);
+    });
+
+  function performSearch(query) {
+    if (!fuse || !query.trim()) {
+      searchResults.innerHTML = '';
+      noResults.style.display = 'none';
+      return;
+    }
+
+    const results = fuse.search(query);
+    displayResults(results);
+  }
+
+  function displayResults(results) {
+    searchResults.innerHTML = '';
+
+    if (results.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    }
+
+    noResults.style.display = 'none';
+
+    results.forEach(result => {
+      const item = result.item;
+      const div = document.createElement('div');
+      div.className = 'search-result-item';
+
+      let tagsHtml = '';
+      if (item.tags && item.tags.length > 0) {
+        tagsHtml = '<div class="search-result-tags">' +
+          item.tags.map(tag => `<span class="search-result-tag">${tag}</span>`).join('') +
+          '</div>';
+      }
+
+      const date = new Date(item.date);
+      const dateStr = date.toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      div.innerHTML = `
+        <div class="search-result-title">
+          <a href="${item.permalink}">${item.title}</a>
+        </div>
+        <div class="search-result-meta">${dateStr}</div>
+        <div class="search-result-summary">${item.summary || ''}</div>
+        ${tagsHtml}
+      `;
+
+      searchResults.appendChild(div);
+    });
+  }
+
+  // Event listeners
+  searchInput.addEventListener('input', (e) => {
+    performSearch(e.target.value);
+  });
+
+  searchButton.addEventListener('click', () => {
+    performSearch(searchInput.value);
+  });
+
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      performSearch(searchInput.value);
+    }
+  });
+
+  // Check for query parameter on page load
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('q');
+  if (query) {
+    searchInput.value = query;
+    // Wait for fuse to be initialized
+    const checkFuse = setInterval(() => {
+      if (fuse) {
+        performSearch(query);
+        clearInterval(checkFuse);
+      }
+    }, 100);
+  }
+})();
+</script>
+{{ end }}
