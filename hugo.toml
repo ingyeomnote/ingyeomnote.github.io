@@ -67,12 +67,6 @@ title = "Ingyeom's Tech Blog"
     weight = 30
 
   [[menu.main]]
-    identifier = "search"
-    name = "Search"
-    url = "/search/"
-    weight = 35
-
-  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"

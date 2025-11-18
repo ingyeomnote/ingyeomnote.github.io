@@ -205,6 +205,120 @@
             width: 80%;
         }
 
+        /* Search Bar Styles */
+        .search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        #nav-search-input {
+            padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            width: 200px;
+            outline: none;
+        }
+
+        #nav-search-input:focus {
+            border-color: var(--accent-color);
+            background: var(--card-bg);
+            width: 250px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        #nav-search-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            color: var(--text-tertiary);
+            pointer-events: none;
+        }
+
+        .search-results-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            width: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            z-index: 1000;
+            display: none;
+        }
+
+        .search-results-dropdown.show {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .search-result-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-date {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-summary {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .search-no-results {
+            padding: 2rem 1rem;
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
         /* Dark mode toggle button */
         .theme-toggle {
             background: var(--bg-secondary);
@@ -764,10 +878,31 @@
                 margin: 1.5rem -0.5rem;
                 border-radius: 8px;
             }
+
+            .search-wrapper {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            #nav-search-input {
+                width: 100%;
+            }
+
+            #nav-search-input:focus {
+                width: 100%;
+            }
+
+            .search-results-dropdown {
+                width: 100%;
+                left: 0;
+                right: auto;
+            }
         }
     </style>
     <!-- Netlify Identity Widget -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <!-- Fuse.js for search -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 </head>
 <body>
     <header>
@@ -777,6 +912,22 @@
                 {{ range .Site.Menus.main }}
                 <a href="{{ .URL }}">{{ .Name }}</a>
                 {{ end }}
+                <div class="search-wrapper">
+                    <div class="search-input-container">
+                        <input
+                            type="text"
+                            id="nav-search-input"
+                            placeholder="검색..."
+                            autocomplete="off"
+                            aria-label="Search posts"
+                        />
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </div>
+                    <div class="search-results-dropdown" id="search-results-dropdown"></div>
+                </div>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <span id="theme-icon">🌙</span>
                 </button>
@@ -876,6 +1027,115 @@
             card.style.animationDelay = `${index * 0.1}s`;
             observer.observe(card);
           });
+        });
+      })();
+    </script>
+
+    <!-- Navigation Search Script -->
+    <script>
+      (function() {
+        const searchInput = document.getElementById('nav-search-input');
+        const searchResults = document.getElementById('search-results-dropdown');
+
+        if (!searchInput || !searchResults) return;
+
+        let fuse;
+        let searchData = [];
+
+        // Load search index
+        fetch('/index.json')
+          .then(response => response.json())
+          .then(data => {
+            searchData = data;
+            const options = {
+              keys: [
+                { name: 'title', weight: 0.4 },
+                { name: 'content', weight: 0.3 },
+                { name: 'summary', weight: 0.2 },
+                { name: 'tags', weight: 0.05 },
+                { name: 'categories', weight: 0.05 }
+              ],
+              threshold: 0.3,
+              includeScore: true,
+              minMatchCharLength: 2,
+              ignoreLocation: true
+            };
+            fuse = new Fuse(searchData, options);
+          })
+          .catch(err => {
+            console.error('Failed to load search index:', err);
+          });
+
+        function performSearch(query) {
+          if (!fuse || !query.trim()) {
+            searchResults.classList.remove('show');
+            searchResults.innerHTML = '';
+            return;
+          }
+
+          const results = fuse.search(query);
+          displayResults(results);
+        }
+
+        function displayResults(results) {
+          if (results.length === 0) {
+            searchResults.innerHTML = '<div class="search-no-results">검색 결과가 없습니다.</div>';
+            searchResults.classList.add('show');
+            return;
+          }
+
+          const maxResults = 5;
+          const limitedResults = results.slice(0, maxResults);
+
+          let html = '';
+          limitedResults.forEach(result => {
+            const item = result.item;
+            const date = new Date(item.date);
+            const dateStr = date.toLocaleDateString('ko-KR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+
+            html += `
+              <div class="search-result-item">
+                <a href="${item.permalink}">
+                  <div class="search-result-title">${item.title}</div>
+                  <div class="search-result-date">${dateStr}</div>
+                  <div class="search-result-summary">${item.summary || ''}</div>
+                </a>
+              </div>
+            `;
+          });
+
+          searchResults.innerHTML = html;
+          searchResults.classList.add('show');
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+          performSearch(e.target.value);
+        });
+
+        searchInput.addEventListener('focus', (e) => {
+          if (e.target.value.trim()) {
+            performSearch(e.target.value);
+          }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.remove('show');
+          }
+        });
+
+        // Handle keyboard navigation
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            searchResults.classList.remove('show');
+            searchInput.blur();
+          }
         });
       })();
     </script>
